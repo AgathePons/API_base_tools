@@ -1,0 +1,5 @@
+################################################################################
+# Test file for HTTP routes of the API
+# Needs REST Client VSCode addon
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+################################################################################
