@@ -1,8 +1,8 @@
 const express = require('express');
 
-// TODO controller
-// TODO errors handler
-// TODO controller handler
+const { websiteController } = require('../../controllers/website/websiteController');
+const { WebsiteError } = require('../../helpers/errorHandler');
+const controllerHandler = require('../../helpers/controllerHandler');
 
 const router = express.Router();
 
@@ -12,11 +12,11 @@ router.use((_req, res, next) => {
   next();
 });
 
-router.get('/'); // TODO controller
+router.get('/', controllerHandler(websiteController.home));
 
 // 404
 router.use(() => {
-  // TODO error
+  throw new WebsiteError('Page introuvable', { statusCode: 404 });
 });
 
 module.exports = router;

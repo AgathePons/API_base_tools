@@ -2,9 +2,9 @@ const express = require('express');
 
 const myObject1Router = require('./myObject1');
 const myObject2Router = require('./myObject2');
-// TODO controller handler
+// TODO controller
 
-// TODO errors handler
+const { ApiError } = require('../../helpers/errorHandler');
 
 const router = express.Router();
 
@@ -21,7 +21,7 @@ router.use('/myObject2', myObject2Router);
 
 // 404
 router.use(() => {
-  // TODO error
+  throw new ApiError('API route not found', { statusCode: 404 });
 });
 
 module.exports = router;
