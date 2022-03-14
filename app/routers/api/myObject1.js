@@ -1,13 +1,21 @@
 const express = require('express');
 
-// TODO validator
-// TODO create obj1 schemas
+const validate = require('../../validation/validator');
+const createSchema = require('../../validation/schemas/object1CreateSchema');
+const updateSchema = require('../../validation/schemas/object1UpdateSchema');
 
-// TODO controller obj 1
-// TODO controller handler
+const { object1Controller: controller } = require('../../controllers/api');
+const controllerHandler = require('../../helpers/controllerHandler');
 
 const router = express.Router();
 
-// TODO routes
+router
+  .route('/')
+  .get(controllerHandler(controller.getAll));
+
+router
+  // number id only
+  .route('/:id(\\d+)')
+  .get(controllerHandler(controller.getOne));
 
 module.exports = router;

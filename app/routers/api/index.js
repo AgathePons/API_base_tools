@@ -2,7 +2,7 @@ const express = require('express');
 
 const myObject1Router = require('./myObject1');
 const myObject2Router = require('./myObject2');
-// TODO controller
+const { apiController } = require('../../controllers/api');
 
 const { ApiError } = require('../../helpers/errorHandler');
 
@@ -14,10 +14,10 @@ router.use((_, res, next) => {
   next();
 });
 
-router.all('/'); // TODO controller
+router.all('/', apiController.home);
 
-router.use('/myObject1', myObject1Router);
-router.use('/myObject2', myObject2Router);
+router.use('/myObjects1', myObject1Router);
+router.use('/myObjects2', myObject2Router);
 
 // 404
 router.use(() => {
