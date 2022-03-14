@@ -11,11 +11,26 @@ const router = express.Router();
 
 router
   .route('/')
+  /**
+   * GET /api/myObjects2
+   * @summary Get all objects 2
+   * @tags Object2
+   * @return {[object]} 200 - success response - application/json
+   */
   .get(controllerHandler(controller.getAll));
 
 router
   // number id only
   .route('/:id(\\d+)')
+  /**
+   * GET /api/myObjects2/{id}
+   * @summary Get one object 2
+   * @tags Object2
+   * @param {number} id.path.required - object2 identifier
+   * @return {object} 200 - success response - application/json
+   * @return {ApiError} 400 - Bad request response - application/json
+   * @return {ApiError} 404 - Post not found - application/json
+   */
   .get(controllerHandler(controller.getOne));
 
 module.exports = router;
