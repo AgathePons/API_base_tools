@@ -1,5 +1,4 @@
 const express = require('express');
-const debug = require('debug')('object1Router');
 const validate = require('../../validation/validator');
 const createSchema = require('../../validation/schemas/object1CreateSchema');
 const updateSchema = require('../../validation/schemas/object1UpdateSchema');

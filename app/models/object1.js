@@ -1,6 +1,6 @@
 const debug = require('debug')('model:object1');
 const client = require('../config/db');
-const { ApiError } = require('../helpers/errorHandler');
+// TODO ApiError
 
 // TODO JSDOC
 
@@ -32,9 +32,9 @@ const object1DataMapper = {
   async update(object1Id, object1) {
     debug(`update called for id ${object1Id}`);
     const fields = Object.keys(object1).map((prop, index) => `"${prop}" = $${index + 1}`);
-    debug(fields);
+    debug('fields:', fields);
     const values = Object.values(object1);
-    debug(values);
+    debug('values:', values);
     const updatedObject1 = await client.query(
       `
       UPDATE object1 SET ${fields}
@@ -51,6 +51,7 @@ const object1DataMapper = {
     return !!result.rowCount;
   },
   async isUnique(inputData, object1Id) {
+    debug('check unique fields');
     const fields = [];
     const values = [];
     Object.entries(inputData).forEach(([key, value], index) => {
@@ -66,7 +67,7 @@ const object1DataMapper = {
       text: `SELECT FROM object1 WHERE (${fields.join(' OR ')})`,
       values,
     };
-    // if object1Id is prvided (in update case) we have to complete the preparedQuery
+    // if object1Id is provided (in update case) we have to complete the preparedQuery
     // to ignore this object1
     if (object1Id) {
       preparedQuery.text += ` AND id <> $${values.length + 1}`;

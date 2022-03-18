@@ -22,7 +22,7 @@ GET {{ endpoint }}/myObjects1/923
 ### Get object1 with id
 GET {{ endpoint }}/myObjects1/2
 
-### Insert post ERROR
+### Insert object1 ERROR
 POST {{ endpoint }}/myObjects1/
 content-type: application/json
 
@@ -32,7 +32,7 @@ content-type: application/json
     "object2_id": 1
 }
 
-### Insert post
+### Insert object1
 POST {{ endpoint }}/myObjects1/
 content-type: application/json
 
@@ -42,7 +42,7 @@ content-type: application/json
     "object2_id": 1
 }
 
-### Update post
+### Update object1
 PATCH {{ endpoint }}/myObjects1/5
 content-type: application/json
 
@@ -53,3 +53,45 @@ content-type: application/json
 
 ### Delete object1 with id
 DELETE {{ endpoint }}/myObjects1/5
+
+#########################
+#        OBJECT2        #
+#########################
+
+### List of object2
+GET {{ endpoint }}/myObjects2/
+
+### Get object2 with id which does not exist
+GET {{ endpoint }}/myObjects2/923
+
+### Get object2 with id
+GET {{ endpoint }}/myObjects2/2
+
+### Insert object2 ERROR
+POST {{ endpoint }}/myObjects2/
+content-type: application/json
+
+{
+    "label": null,
+    "text_content": "test insert ERROR"
+}
+
+### Insert object2
+POST {{ endpoint }}/myObjects2/
+content-type: application/json
+
+{
+    "label": "test insert object2",
+    "text_content": "New test insert of an object2"
+}
+
+### Update object2
+PATCH {{ endpoint }}/myObjects2/3
+content-type: application/json
+
+{
+    "label": "Change title of this object2"
+}
+
+### Delete object2 with id
+DELETE {{ endpoint }}/myObjects2/4
