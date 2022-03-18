@@ -50,6 +50,7 @@ module.exports = {
         throw new ApiError(`Other object1 already exists with this ${field}`, { statusCode: 404 });
       }
     }
+    debug('all update verif done');
     const updatedObject1 = await object1DataMapper.update(req.params.id, req.body);
     return res.json(updatedObject1);
   },

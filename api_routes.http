@@ -42,12 +42,14 @@ content-type: application/json
     "object2_id": 1
 }
 
-### TODO Update post
+### Update post
 PATCH {{ endpoint }}/myObjects1/5
 content-type: application/json
 
 {
-    "title": null,
-    "content": "New test insert again",
-    "object2_id": null
+    "title": "Change title of this object1",
+    "object2_id": 3
 }
+
+### Delete object1 with id
+DELETE {{ endpoint }}/myObjects1/5

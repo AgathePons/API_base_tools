@@ -7,12 +7,12 @@ const { ApiError } = require('../helpers/errorHandler');
 const object1DataMapper = {
   async findAll() {
     debug('findAll called');
-    const result = await client.query('SELECT * FROM object1;');
+    const result = await client.query('SELECT * FROM object1');
     return result.rows;
   },
   async findByPk(object1Id) {
     debug(`findByPk called for id ${object1Id}`);
-    const result = await client.query('SELECT * FROM object1 WHERE id = $1;', [object1Id]);
+    const result = await client.query('SELECT * FROM object1 WHERE id = $1', [object1Id]);
     if (result.rowCount === 0) {
       return null;
     }
@@ -23,7 +23,7 @@ const object1DataMapper = {
     const insertedObject1 = await client.query(
       `
       INSERT INTO object1 (title, content, object2_id) VALUES
-      ($1, $2, $3) RETURNING *;
+      ($1, $2, $3) RETURNING *
       `,
       [object1.title, object1.content, object1.object2_id],
     );
@@ -31,9 +31,19 @@ const object1DataMapper = {
   },
   async update(object1Id, object1) {
     debug(`update called for id ${object1Id}`);
-    const fields = Object.keys(object1);
+    const fields = Object.keys(object1).map((prop, index) => `"${prop}" = $${index + 1}`);
     debug(fields);
-    return 'test';
+    const values = Object.values(object1);
+    debug(values);
+    const updatedObject1 = await client.query(
+      `
+      UPDATE object1 SET ${fields}
+      WHERE id = $${fields.length + 1}
+      RETURNING *
+      `,
+      [...values, object1Id],
+    );
+    return updatedObject1.rows[0];
   },
   async delete(object1Id) {
     debug(`delete called for id ${object1Id}`);
@@ -49,6 +59,9 @@ const object1DataMapper = {
         values.push(value);
       }
     });
+    if (fields.length === 0 && values.length === 0) {
+      return null;
+    }
     const preparedQuery = {
       text: `SELECT FROM object1 WHERE (${fields.join(' OR ')})`,
       values,
@@ -56,7 +69,7 @@ const object1DataMapper = {
     // if object1Id is prvided (in update case) we have to complete the preparedQuery
     // to ignore this object1
     if (object1Id) {
-      preparedQuery.text += ` AND is <> $${values.length + 1}`;
+      preparedQuery.text += ` AND id <> $${values.length + 1}`;
       preparedQuery.values.push(object1Id);
     }
     const result = await client.query(preparedQuery);
