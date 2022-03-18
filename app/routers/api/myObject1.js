@@ -17,7 +17,9 @@ router
    * @tags Object1
    * @return {[object]} 200 - success response - application/json
    */
-  .get(controllerHandler(controller.getAll));
+  .get(controllerHandler(controller.getAll))
+  // TODO JSDOC
+  .post(validate('body', createSchema), controllerHandler(controller.create));
 
 router
   // number id only
@@ -31,6 +33,10 @@ router
    * @return {ApiError} 400 - Bad request response - application/json
    * @return {ApiError} 404 - Post not found - application/json
    */
-  .get(controllerHandler(controller.getOne));
+  .get(controllerHandler(controller.getOne))
+  // TODO JSDOC
+  .patch(validate('body', updateSchema), controllerHandler(controller.update))
+  // TODO JSDOC
+  .delete(controllerHandler(controller.delete));
 
 module.exports = router;

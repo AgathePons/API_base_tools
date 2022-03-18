@@ -3,3 +3,51 @@
 # Needs REST Client VSCode addon
 # https://marketplace.visualstudio.com/items?itemName=humao.rest-client
 ################################################################################
+
+@endpoint = http://localhost:{{$dotenv PORT}}/api
+
+### 404
+GET {{ endpoint }}/ofkjshsekih
+
+#########################
+#        OBJECT1        #
+#########################
+
+### List of object1
+GET {{ endpoint }}/myObjects1/
+
+### Get object1 with id which does not exist
+GET {{ endpoint }}/myObjects1/923
+
+### Get object1 with id
+GET {{ endpoint }}/myObjects1/2
+
+### Insert post ERROR
+POST {{ endpoint }}/myObjects1/
+content-type: application/json
+
+{
+    "title": null,
+    "content": "test insert ERROR",
+    "object2_id": 1
+}
+
+### Insert post
+POST {{ endpoint }}/myObjects1/
+content-type: application/json
+
+{
+    "title": "New test insert",
+    "content": "New test insert again",
+    "object2_id": 1
+}
+
+### TODO Update post
+PATCH {{ endpoint }}/myObjects1/5
+content-type: application/json
+
+{
+    "title": null,
+    "content": "New test insert again",
+    "object2_id": null
+}
