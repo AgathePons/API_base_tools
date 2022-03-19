@@ -1,6 +1,6 @@
 # API REST base code to start building an API REST
 
-## What it this for?
+## What is this for?
 
 Propose the base of an app architecture for an API REST with CRUD (Create, Read, Update, Delete) routes.
 
@@ -36,6 +36,15 @@ To validate the data format
 
 ### Handle error
 
+### Migrations folder
+
+### SQL scripts
+
+2 SQL scripts are provided to create an example database which works with this base app
+
+- `create_tables_example.sql` for the DDL (Data Definition Language)
+- `seeding_example.sql` for the DML (Data Manipulation Language)
+
 ## For the front developer
 
 ### Home
@@ -43,5 +52,4 @@ To validate the data format
 pug homepage with link to doc
 
 ### Documentation using the OpenAPI Specification
-
 
