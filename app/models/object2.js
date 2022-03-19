@@ -1,7 +1,18 @@
 const debug = require('debug')('model:object2');
 const client = require('../config/db');
 
-// TODO JSDOC
+/**
+ * @typedef {object} Object2 - Object 2
+ * @property {number} id - pk of the table
+ * @property {string} label - column label of the table
+ * @property {string} text_content - column text_content of the table
+ */
+
+/**
+ * @typedef {object} Object2Input - input to send a req.body to insert or update object2
+ * @property {string} label - column label of the table
+ * @property {string} text_content - column text_content of the table
+ */
 
 const object2DataMapper = {
   async findAll() {

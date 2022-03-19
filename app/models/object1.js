@@ -1,8 +1,20 @@
 const debug = require('debug')('model:object1');
 const client = require('../config/db');
-// TODO ApiError
 
-// TODO JSDOC
+/**
+ * @typedef {object} Object1 - Object 1
+ * @property {number} id - pk of the table
+ * @property {string} title - column title of the table
+ * @property {string} content - column content of the table
+ * @property {number} object2_id - fk refers to object2
+ */
+
+/**
+ * @typedef {object} Object1Input - input to send a req.body to insert or update object1
+ * @property {string} title - column title of the table
+ * @property {string} content - column content of the table
+ * @property {number} object2_id - fk refers to object2
+ */
 
 const object1DataMapper = {
   async findAll() {
