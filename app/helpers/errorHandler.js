@@ -5,6 +5,11 @@ const logger = require('./logger');
 const ApiError = require('../errors/apiError');
 const WebsiteError = require('../errors/websiteError');
 
+/**
+ * Error middleware to that respond to a next method with an error arg
+ * @param {object} err error class
+ * @param {object} res Express response object
+ */
 const errorHandler = (err, res) => {
   let { message } = err;
   let statusCode = err.infos?.statusCode;

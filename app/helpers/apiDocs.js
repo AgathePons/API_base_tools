@@ -1,10 +1,10 @@
 const expressJSDocSwagger = require('express-jsdoc-swagger');
 
 const options = {
-  infos: {
+  info: {
     version: '1.0.0',
-    title: 'API REST',
-    description: 'Base of an API REST',
+    title: 'API REST Base',
+    description: 'Code base with usefull tools to build a classic API REST with DataMapper',
   },
   baseDir: __dirname,
   filesPattern: ['../routers/**/*.js', '../errors/*.js', '../models/*.js'],
@@ -15,7 +15,7 @@ const options = {
 
 /**
  * Swagger middleware factory
- * @param {object} app Express app
- * @returns {object} Express JSDoc Swagger middleware that create web documentation
+ * @param {object} app Express application
+ * @returns {object} Express JSDoc Swagger middleware that creates web documentation
  */
 module.exports = (app) => expressJSDocSwagger(app)(options);
