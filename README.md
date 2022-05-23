@@ -34,9 +34,11 @@ To validate the data format
 
 ### Handle async/await
 
+In the `helpers` folder, `controllerHandler.js` is used with each route which needs async/await. It wraps all the called controllers in a try/catch that allows to lighten the code without include all async/await in try/catch everywhere.
+
 ### Handle error
 
-### Migrations folder
+A csutom class named `ApiError` is available to get errors with status code and to throw custom error, with custom message and code.
 
 ### SQL scripts
 
