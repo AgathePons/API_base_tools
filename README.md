@@ -7,7 +7,7 @@ Propose the base of an app architecture for an API REST with CRUD (Create, Read,
 This app implements various strong and usefull tools to help :
 
 - Back developer to build the API
-- Front deveoper to use the API
+- Front developer to use the API
 
 ## For the back developer
 
